@@ -1,0 +1,10 @@
+$menu-background-color: "#F3F4F6";
+$menu-text-color: "#000";
+.menu,.aside{
+    background: $menu-background-color !important;
+    color: $menu-text-color !important;
+}
+
+.demo-logo-vertical  {
+    text-align: center;
+}

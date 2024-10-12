@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Chat from "@/views/chat";
+import Chat from "@/views/home/main/chat";
 import Login from "@/views/login";
 import Home from "@/views/home";
 

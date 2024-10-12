@@ -1,6 +1,8 @@
 import React from 'react';
 import { Row, Col, Layout, theme } from 'antd';
 import './main.scss';
+import Chat from './chat';
+import TextAreaText from './textArea';
 const { Content } = Layout;
 const Main: React.FC = () => {
     const {
@@ -15,10 +17,14 @@ const Main: React.FC = () => {
             }}
         >
             <Row className="top-content">
-                <Col span={24}>顶部内容</Col>
+                <Col span={24}>
+                    <Chat />
+                </Col>
             </Row>
             <Row className="bottom-content">
-                <Col span={24}>底部内容</Col>
+                <Col span={24}>
+                    <TextAreaText />
+                </Col>
             </Row>
         </Content>
     )

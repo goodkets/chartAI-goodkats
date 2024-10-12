@@ -1,14 +1,17 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, theme, Row, Col } from 'antd';
 import './header.scss'
+import WithSkeleton from "@/components/Skeleton"
+import type { HeadersProps } from './type'
 const { Header } = Layout;
-const Headers: React.FC = (props) => {
+
+
+const Headers: React.FC<HeadersProps> = (props) => {
     const [collapsed, setCollapsed] = useState(false);
-    const [buttonStatus, setButtonStatus] = useState(false);
     const {
       token: { colorBgContainer, },
     } = theme.useToken();
@@ -26,8 +29,9 @@ const Headers: React.FC = (props) => {
             onClick={btnSetCollapsed}
             style={{
                 fontSize: '16px',
-                width: 64,
-                height: 64,
+                width: 30,
+                height: 30,
+                marginLeft:'10px'
             }}
             /> : ''}
             </Col>
@@ -41,5 +45,4 @@ const Headers: React.FC = (props) => {
       </Header>
     )
 };
-
-export default Headers;
+export default WithSkeleton(Headers)

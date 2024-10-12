@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     }, [viewWidth]);
     return (
         <Layout style={{ height: '100vh' }}>
-            <Aside useCollapsed={Collapsed}></Aside>
+            <Aside useCollapsed={Collapsed} Toggle={buttonStatus}></Aside>
         <Layout>
             <Header onHomeSetCollapsed={onCollapse} Toggle={buttonStatus}></Header>
             <Main></Main>

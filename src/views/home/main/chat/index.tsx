@@ -1,4 +1,4 @@
-
+import WithSkeleton from "@/components/Skeleton"
 const Chat: React.FC = () => {
   return (
     <>
@@ -9,4 +9,4 @@ const Chat: React.FC = () => {
   )
 }
 
-export default Chat
+export default  WithSkeleton(Chat)

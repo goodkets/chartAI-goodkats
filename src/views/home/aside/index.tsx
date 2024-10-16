@@ -24,7 +24,7 @@ const Aside: React.FC<AsideProps> = (props) => {
           </Row>
           <Row  className="bottom-content">
             <Col span={24}>
-              <SettingAside />
+              <SettingAside Toggle={props.Toggle} />
             </Col>
           </Row>
         </Content>

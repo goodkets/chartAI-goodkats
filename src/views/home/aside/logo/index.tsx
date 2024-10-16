@@ -1,4 +1,4 @@
-import WithSkeleton from "@/components/Skeleton"
+import WithSkeleton from "@/components/skeleton"
 import Logo from "@/assets/_pic.png_.avif";
 const LogoAside = () => {
     return (

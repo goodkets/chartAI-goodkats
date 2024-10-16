@@ -5,7 +5,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, theme, Row, Col } from 'antd';
 import './header.scss'
-import WithSkeleton from "@/components/Skeleton"
+import WithSkeleton from "@/components/skeleton"
 import type { HeadersProps } from './type'
 const { Header } = Layout;
 

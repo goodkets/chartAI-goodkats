@@ -4,7 +4,7 @@ import {
     VideoCameraOutlined,
   } from '@ant-design/icons';
  import { Menu } from 'antd';
- import WithSkeleton from "@/components/Skeleton" 
+import WithSkeleton from "@/components/skeleton"
 const MenuAside = () => {
     return (
         <>

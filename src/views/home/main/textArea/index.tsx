@@ -3,28 +3,31 @@ import { Flex, Input, Row, Col, Button, Tooltip } from 'antd';
 import { EditOutlined, ScissorOutlined, AudioOutlined, UpCircleFilled } from '@ant-design/icons';
 import WithSkeleton from '@/components/skeleton';
 import { Props } from './type';
-import { getChatList } from '@/api/charAI';
-import fetchToken from '@/utils/fetchToken';
-// import ChatWebSocket from '@/utils/ChatWebSocket';
+import { sendMessage, socket } from '@/utils/TTSRecorder';
+import { useSelector, useDispatch } from 'react-redux';
+// import chatAI from '@/store/chatAI';
 
 const { TextArea } = Input;
 
 const TextAreaText: React.FC<Props> = (props) => {
+
+    const text = useSelector((state: any) => state.chatAI.c);
+    // console.log(text, 'text');
+    const dispatch = useDispatch();
     const [disabled, setDisabled] = useState(true);
     const [textHeight, setTextHeight] = useState('20px');
     const [textValue, setTextValue] = useState('');
+
     const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDisabled(!(e.target.value.length > 0));
         setTextHeight(e.target.value.length > 0 ? 'auto' : '20px');
         setTextValue(e.target.value);
     };
     const debouncedLog = async (value: string) => {
-        // const res = await getChatList({})
-        // console.log(res, 222);
-        await fetchToken();
-        // const websocketUrl = 'wss://spark-api.xf-yun.com/v3.1/chat';
-        // const chatWebSocket = new ChatWebSocket(websocketUrl);
-        // chatWebSocket.connect();
+        setTimeout(() => {
+            sendMessage(socket, value)
+        }, 1000)
+        console.log(value, 111);
         props.onAreaTextChange(value)
         setDisabled(true);
         setTextValue('');
@@ -32,23 +35,20 @@ const TextAreaText: React.FC<Props> = (props) => {
 
     return (
         <div className='textArea'>
-            <Row className='Row' style={{ height: '100%' }}>
-                <Col span={1} className='edit'>
+            <div className='Row'>
+                <div className='edit'>
                     <EditOutlined />
-                </Col>
-                <Col span={19}>
-                    <Flex vertical gap={32}>
+                </div>
+
                         <TextArea
                             autoSize={{ minRows: 1, maxRows: 6 }}
                             value={textValue}
                             onChange={onChange}
-                            style={{ height: `${textHeight}`, width: "max-content" }}
+                    style={{ height: `${textHeight}` }}
                             className='textAreaText'
                             placeholder="请输入你的问题！"
                         />
-                    </Flex>
-                </Col>
-                <Col span={4} className='setting'>
+                <div className='setting'>
                     <div className='icons'>
                         <div className='icon'>
                             <Tooltip title="暂未开放">
@@ -67,8 +67,8 @@ const TextAreaText: React.FC<Props> = (props) => {
                     <div>
                         <Button onClick={() => { debouncedLog(textValue) }} className='button' type="link" icon={<UpCircleFilled />} disabled={disabled} />
                     </div>
-                </Col>
-            </Row>
+                </div>
+            </div>
         </div>
     );
 };

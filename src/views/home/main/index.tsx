@@ -9,10 +9,10 @@ const Main: React.FC = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
     const [text, setText] = useState({
-        message: 'user', text: ''
+        avator: 'user', message: ''
     });
     const AreaTextChange = (e: string) => {
-        setText({ ...text, text: e })
+        setText({ ...text, message: e })
     } 
     return (
         <Content
@@ -20,6 +20,7 @@ const Main: React.FC = () => {
             style={{
                 background: colorBgContainer,
                 borderRadius: borderRadiusLG,
+                overflowY: 'scroll',
             }}
         >
             <Row className="top-content">

@@ -15,6 +15,9 @@ export default ({command, mode}:ConfigEnv):UserConfig=>{
       }
     },
     plugins: [react()],
+    optimizeDeps: {
+      include: ['crypto-js'], // 确保 crypto-js 被包含在优化依赖中
+    },
     server:{
       port:parseInt(env.VITE_PORT,10),
       open:false,

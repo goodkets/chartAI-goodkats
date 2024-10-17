@@ -19,7 +19,7 @@ const Home: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        if (viewWidth <= 600) {
+        if (viewWidth <= 900) {
             // alert("请使用移动端浏览");
             setButtonStatus(true);
         } else {

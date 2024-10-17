@@ -2,12 +2,13 @@ import React from "react";
 import { Avatar } from 'antd'
 import { getCurrentTime } from '@/utils/time'
 const TextMessage: React.FC = (props) => {
+    console.log(props, 222)
     const userText = <div className="user">
         <div className="text">
             <div className="time">{getCurrentTime()}</div>
             <div className="message-box">
                 <div className="content">
-                    {props.message == 'user' ? props.text : ''}
+                    {props.avator == 'user' ? props.message : ''}
                 </div>
             </div>
         </div>
@@ -26,7 +27,7 @@ const TextMessage: React.FC = (props) => {
                 <div className="time">{getCurrentTime()}</div>
                 <div className="message-box">
                     <div className="content">
-                        {props.message == 'robot' ? props.text : ''}
+                        {props.avator == 'robot' ? props.message : ''}
                     </div>
                 </div>
             </div>
@@ -34,7 +35,7 @@ const TextMessage: React.FC = (props) => {
     </div>
     return (
         <>
-            {props.message == 'user' ? userText : robotText}
+            {props.avator == 'user' ? userText : robotText}
         </>
     )
 };

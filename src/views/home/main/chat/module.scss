@@ -19,14 +19,17 @@ $primary-lineHeight: 1.5;
       margin-right: 20px;
     }
     .message-box {
-      width: max-content;
+      // width: max-content;
       float: right;
       margin-right: 10px;
       .content {
         position: relative;
+        right: 0;
         padding: 16px;
         background-color: #e9ecef;
         border-radius: 8px;
+        // max-width: 50%;
+        // width: 50%;
       //  margin-right: 10px;
 
       }
@@ -66,6 +69,7 @@ $primary-lineHeight: 1.5;
           background-color: #e9ecef;
           border-radius: 8px;
           margin-left: 15px;
+          max-width: 450px;
   
         }
         /* 创建小角内部的白色三角形 */

@@ -1,0 +1,92 @@
+@charset "UTF-8";
+.containerChat {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 16px;
+}
+
+.containerChat .user {
+  display: flex;
+  justify-content: end;
+  line-height: 1.5;
+}
+
+.containerChat .user .time {
+  margin-right: 16px;
+  text-align: right;
+  color: #ccc;
+}
+
+.containerChat .user .userInfo {
+  margin-right: 20px;
+}
+
+.containerChat .user .message-box {
+  float: right;
+  margin-right: 10px;
+  /* 创建小角内部的白色三角形 */
+}
+
+.containerChat .user .message-box .content {
+  min-width: 200px;
+  max-width: 600px;
+  position: relative;
+  right: 0;
+  padding: 16px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+}
+
+.containerChat .user .message-box ::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0px 0 8px 8px;
+  border-color: transparent transparent transparent #e9ecef;
+}
+
+.containerChat .robot {
+  line-height: 1.5;
+  line-height: 1.5;
+  margin-top: 25px;
+}
+
+.containerChat .robot .text {
+  display: flex;
+}
+
+.containerChat .robot .text .time {
+  margin-left: 16px;
+  color: #ccc;
+}
+
+.containerChat .robot .text .message-box {
+  /* 创建小角内部的白色三角形 */
+}
+
+.containerChat .robot .text .message-box .content {
+  min-width: 200px;
+  max-width: 600px;
+  position: relative;
+  padding: 16px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  margin-left: 15px;
+  max-width: 450px;
+}
+
+.containerChat .robot .text .message-box ::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 8px 8px;
+  transform: rotate(90deg);
+  border-color: transparent transparent transparent #e9ecef;
+}

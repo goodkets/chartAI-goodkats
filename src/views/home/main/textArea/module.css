@@ -1,0 +1,118 @@
+@charset "UTF-8";
+.textArea {
+  background-color: #F7F7F7;
+  box-shadow: 0 6px 10px 0 rgba(42, 60, 79, 0.1);
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.textArea ::-webkit-scrollbar {
+  width: 5px;
+  /* 滚动条宽度 */
+}
+
+.textArea ::-webkit-scrollbar-thumb {
+  background-color: #888;
+  /* 滑块颜色 */
+  border-radius: 6px;
+  /* 滑块圆角 */
+}
+
+.textArea ::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  /* 轨道颜色 */
+  border-radius: 6px;
+  /* 轨道圆角 */
+}
+
+.textArea :hover::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border: none;
+}
+
+.textArea .Row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.textArea .Row .edit {
+  display: flex;
+  align-items: center;
+  color: black;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.textArea .Row .textAreaText {
+  width: 100%;
+  /* styles.css */
+  resize: none;
+  border: none;
+  margin: 15px;
+  background-color: #F7F7F7;
+}
+
+.textArea .Row .textAreaText .icon {
+  display: flex;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.textArea .Row .textAreaText .hr {
+  color: #ccc;
+}
+
+.textArea .Row .textAreaText .button {
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.textArea .Row .textAreaText .button .ant-btn-icon span {
+  font-size: 30px;
+}
+
+.textArea .Row .textAreaText textarea,
+.textArea .Row .textAreaText textarea.ant-input:hover,
+.textArea .Row .textAreaText textarea:focus {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.textArea .Row .setting {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+.textArea .Row .setting .icons {
+  display: flex;
+}
+
+.textArea .Row .setting .icons .icon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.textArea .Row .setting .hr {
+  color: #ccc;
+}
+
+.textArea .Row .setting .button {
+  margin: 0 10px;
+}
+
+.textArea .Row .setting .button .ant-btn-icon span {
+  font-size: 30px;
+}
+
+.textArea textarea,
+.textArea textarea.ant-input:hover,
+.textArea textarea:focus {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}

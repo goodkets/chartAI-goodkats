@@ -3,9 +3,10 @@ $primary-size: 16px;
 $primary-lineHeight: 1.5;
 
 .containerChat {
-  width: 100%;
+  // width: 100%;
   color: $primary-color;
   font-size: $primary-size;
+  // margin-bottom: 1000px;
   .user {
     display: flex;
     justify-content: end;
@@ -23,6 +24,8 @@ $primary-lineHeight: 1.5;
       float: right;
       margin-right: 10px;
       .content {
+        min-width: 200px;
+        max-width: 600px;
         position: relative;
         right: 0;
         padding: 16px;
@@ -50,10 +53,10 @@ $primary-lineHeight: 1.5;
 
   .robot {
     line-height: $primary-lineHeight;
-    display: flex;
-    justify-content: start;
+    // display: flex;
+    // justify-content: start;
     line-height: $primary-lineHeight;
-    max-width: 90%;
+    // max-width: 90%;
     margin-top: 25px;
     .text { 
       display: flex;
@@ -62,8 +65,10 @@ $primary-lineHeight: 1.5;
         color:#ccc
       }
       .message-box {
-        width: max-content;
+        // width: max-content;
         .content {
+          min-width: 200px;
+          max-width: 600px;
           position: relative;
           padding: 16px;
           background-color: #e9ecef;

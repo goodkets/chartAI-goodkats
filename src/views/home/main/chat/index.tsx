@@ -1,51 +1,30 @@
 import React, { useEffect, useState } from "react";
 import WithSkeleton from "@/components/skeleton";
-import { Props } from "./type";
-// import UserLogo from '@/components/userLogo'
+import { Props, TextItem } from "./type";
 import "./module.scss";
 import TextMessage from "@/components/textMessage";
 import {
-  sendMessage,
-  setOnMessageCallback,
-  setOnCloseCallback,
+  setOnMessageCallback
 } from "@/utils/TTSRecorder";
+import { getCurrentTime } from "@/utils/time";
+
 
 const Chat: React.FC<Props> = (props) => {
   const { text } = props;
   console.log(text, "聊天");
-  const [texts, setTexts] = useState([]);
-  const [content, setContent] = useState([]);
+  const [texts, setTexts] = useState<TextItem[]>([]);
 
   useEffect(() => {
     if (text.avator === "user" && text.message) {
-      // console.log("user");
-      setTexts([...texts, text]);
+      setTexts([...texts, { message: text.message, avator: "user", time: getCurrentTime() }]);
     }
   }, [text]);
-  useEffect(() => {
-    setOnMessageCallback((event) => {
-      console.log("WebSocket 收到消息:", event.data);
-      const { payload } = JSON.parse(event.data);
-      console.log(event.data, 11111);
-      setContent([
-        ...content,
-        { message: payload.choices.text[0].content, avator: "robot" },
-      ]);
-    });
-
-    setOnCloseCallback(() => {
-      const message = content.map((item) => item.message).join("");
-      console.log(message, "message");
-      setTexts([...texts, { avator: "robot", message: message }]);
-      console.log("WebSocket 连接已关闭");
-    });
-
-    // 清理回调函数
-    return () => {
-      setOnMessageCallback(null);
-      setOnCloseCallback(null);
-    };
-  }, [content, texts]);
+  setOnMessageCallback((message: string) => {
+    setTexts([
+      ...texts,
+      { message, avator: "robot", time: getCurrentTime() },
+    ]);
+  }); 
 
   return (
     <>
@@ -55,6 +34,7 @@ const Chat: React.FC<Props> = (props) => {
             avator={item.avator}
             key={index}
             message={item.message}
+            time={item.time}
           />
         ))}
       </div>

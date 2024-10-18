@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Input, Button, Tooltip } from "antd";
 import {
   EditOutlined,
@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import WithSkeleton from "@/components/skeleton";
 import { Props } from "./type";
-import { sendMessage } from "@/utils/TTSRecorder";
+import { sendMessage, createSocket } from "@/utils/TTSRecorder";
 import "./module.scss";
 
 const { TextArea } = Input;
@@ -18,19 +18,19 @@ const TextAreaText: React.FC<Props> = (props) => {
   const [textHeight, setTextHeight] = useState("20px");
   const [textValue, setTextValue] = useState("");
 
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const onChange = (e: React.ChangeEvent<any>) => {
     setDisabled(!(e.target.value.length > 0));
     setTextHeight(e.target.value.length > 0 ? "auto" : "20px");
     setTextValue(e.target.value);
   };
-  const debouncedLog = async (value: string) => {
-    setTimeout(() => {
+  const debouncedLog = useCallback(async (value: string) => {
+    setTimeout(async () => {
       sendMessage(value);
     }, 1000);
     props.onAreaTextChange(value);
     setDisabled(true);
     setTextValue("");
-  };
+  }, [props.onAreaTextChange]);
 
   return (
     <div className="textArea">

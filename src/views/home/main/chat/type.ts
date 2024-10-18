@@ -1,4 +1,9 @@
 interface Props  {
-    
+    text:TextItem
 }
-export type {Props}
+interface TextItem {
+    message: string;
+    avator: string;
+    time: string;
+  }
+export type {Props, TextItem}

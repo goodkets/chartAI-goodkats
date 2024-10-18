@@ -1,12 +1,18 @@
 import React from "react";
 import { Avatar } from "antd";
 import { getCurrentTime } from "@/utils/time";
-const TextMessage: React.FC = (props) => {
-  // console.log(props, 222);
+interface MessageItemProps {
+  avator: string;
+  key: number;
+  message: string;
+  time: string;
+}
+
+const TextMessage: React.FC<MessageItemProps> = (props) => {
   const userText = (
     <div className="user">
       <div className="text">
-        <div className="time">{getCurrentTime()}</div>
+        <div className="time">{props.time}</div>
         <div className="message-box">
           <div className="content">
             {props.avator == "user" ? props.message : ""}
@@ -14,7 +20,6 @@ const TextMessage: React.FC = (props) => {
         </div>
       </div>
       <div className="userInfo">
-        {/* <UserLogo /> */}
         <Avatar src="https://qiniuchat.littlewheat.com/other/avatar.jpg"></Avatar>
       </div>
     </div>
@@ -23,11 +28,10 @@ const TextMessage: React.FC = (props) => {
     <div className="robot">
       <div className="text">
         <div className="robotInfo">
-          {/* <UserLogo /> */}
           <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5NfiJQjkpTOAXKqKzMcd4kmcOQ4j2mZ4qpA&s"></Avatar>
         </div>
         <div>
-          <div className="time">{getCurrentTime()}</div>
+          <div className="time">{props.time}</div>
           <div className="message-box">
             <div className="content">
               {props.avator == "robot" ? props.message : ""}

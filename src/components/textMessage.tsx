@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar } from "antd";
-import { getCurrentTime } from "@/utils/time";
+
 interface MessageItemProps {
   avator: string;
   key: number;
@@ -9,13 +9,28 @@ interface MessageItemProps {
 }
 
 const TextMessage: React.FC<MessageItemProps> = (props) => {
+  console.log(props, "props");
+  const userInfo = useState({
+    avator: '',
+    message: '',
+    time: '',
+    status: '',
+    key: ''
+  })
+  const robotInfo = useState({
+    avator: '',
+    message: '',
+    time: '',
+    status: '',
+    key: ''
+  })
   const userText = (
     <div className="user">
       <div className="text">
         <div className="time">{props.time}</div>
         <div className="message-box">
           <div className="content">
-            {props.avator == "user" ? props.message : ""}
+            {props.avator === "user" ? props.message : ""}
           </div>
         </div>
       </div>
@@ -24,6 +39,7 @@ const TextMessage: React.FC<MessageItemProps> = (props) => {
       </div>
     </div>
   );
+
   const robotText = (
     <div className="robot">
       <div className="text">
@@ -34,14 +50,15 @@ const TextMessage: React.FC<MessageItemProps> = (props) => {
           <div className="time">{props.time}</div>
           <div className="message-box">
             <div className="content">
-              {props.avator == "robot" ? props.message : ""}
+              {props.avator === "robot" ? props.message : ""}
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-  return <>{props.avator == "user" ? userText : robotText}</>;
+
+  return props.avator === "user" ? userText : robotText;
 };
 
 export default TextMessage;

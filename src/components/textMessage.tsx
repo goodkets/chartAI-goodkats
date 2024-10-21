@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar } from "antd";
-
+import Typed from "typed.js";
+import generateRandomLetters from "@/utils/randomLtter";
 interface MessageItemProps {
   avator: string;
   key: number;
@@ -9,21 +10,23 @@ interface MessageItemProps {
 }
 
 const TextMessage: React.FC<MessageItemProps> = (props) => {
-  console.log(props, "props");
-  const userInfo = useState({
-    avator: '',
-    message: '',
-    time: '',
-    status: '',
-    key: ''
-  })
-  const robotInfo = useState({
-    avator: '',
-    message: '',
-    time: '',
-    status: '',
-    key: ''
-  })
+  const index = generateRandomLetters(5, true);
+  const uniqueId = `content-${index}`;
+
+  useEffect(() => {
+    if (props.avator === "robot") {
+      const options = {
+        strings: [props.message],
+        typeSpeed: 80,
+        showCursor: false,
+      };
+      const typed = new Typed(`#${uniqueId}`, options);
+      return () => {
+        typed.destroy();
+      };
+    }
+  }, [props.avator, props.message, uniqueId]);
+
   const userText = (
     <div className="user">
       <div className="text">
@@ -49,7 +52,7 @@ const TextMessage: React.FC<MessageItemProps> = (props) => {
         <div>
           <div className="time">{props.time}</div>
           <div className="message-box">
-            <div className="content">
+            <div className="content" id={uniqueId}>
               {props.avator === "robot" ? props.message : ""}
             </div>
           </div>

@@ -10,16 +10,21 @@ import WithSkeleton from "@/components/skeleton";
 import { Props } from "./type";
 import { sendMessage, createSocket } from "@/utils/TTSRecorder";
 import "./module.scss";
+import { useSelector, useDispatch } from 'react-redux'
+import { changeDisabled } from "@/store/chatAI";
 
 const { TextArea } = Input;
 
 const TextAreaText: React.FC<Props> = (props) => {
-  const [disabled, setDisabled] = useState(true);
+  const dispatchs = useDispatch();
+  const [disabled, setDisabled] = useSelector((state: any) => state.chatAI.disabled);
   const [textHeight, setTextHeight] = useState("20px");
   const [textValue, setTextValue] = useState("");
 
   const onChange = (e: React.ChangeEvent<any>) => {
-    setDisabled(!(e.target.value.length > 0));
+    // setDisabled(!(e.target.value.length > 0));
+    dispatchs(changeDisabled(!(e.target.value.length > 0)));
+    console.log(disabled, 7777)
     setTextHeight(e.target.value.length > 0 ? "auto" : "20px");
     setTextValue(e.target.value);
   };

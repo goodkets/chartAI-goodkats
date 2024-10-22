@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar } from "antd";
-import Typed from "typed.js";
-import generateRandomLetters from "@/utils/randomLtter";
+// import "./styles.css"; // 引入 CSS 文件
+
 interface MessageItemProps {
   avator: string;
   key: number;
@@ -10,22 +10,13 @@ interface MessageItemProps {
 }
 
 const TextMessage: React.FC<MessageItemProps> = (props) => {
-  const index = generateRandomLetters(5, true);
-  const uniqueId = `content-${index}`;
+  const [isAnimated, setIsAnimated] = useState(false);
 
   useEffect(() => {
     if (props.avator === "robot") {
-      const options = {
-        strings: [props.message],
-        typeSpeed: 80,
-        showCursor: false,
-      };
-      const typed = new Typed(`#${uniqueId}`, options);
-      return () => {
-        typed.destroy();
-      };
+      setIsAnimated(true);
     }
-  }, [props.avator, props.message, uniqueId]);
+  }, [props.avator]);
 
   const userText = (
     <div className="user">
@@ -52,7 +43,7 @@ const TextMessage: React.FC<MessageItemProps> = (props) => {
         <div>
           <div className="time">{props.time}</div>
           <div className="message-box">
-            <div className="content" id={uniqueId}>
+            <div className={`content ${isAnimated ? 'fade-in' : ''}`}>
               {props.avator === "robot" ? props.message : ""}
             </div>
           </div>

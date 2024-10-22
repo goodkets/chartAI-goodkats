@@ -32,6 +32,8 @@ $primary-lineHeight: 1.5;
         padding: 16px;
         background-color: #e9ecef;
         border-radius: 8px;
+        // word-spacing: -0.25em; /* 调整单词之间的间距 */
+        // letter-spacing: -0.25em; /* 调整字母之间的间距 */
         // max-width: 50%;
         // width: 50%;
       //  margin-right: 10px;
@@ -76,6 +78,9 @@ $primary-lineHeight: 1.5;
           border-radius: 8px;
           margin-left: 15px;
           max-width: 450px;
+          // word-spacing: -0.25em; /* 调整单词之间的间距 */
+          // letter-spacing: -0.25em; /* 调整字母之间的间距 */
+          
   
         }
         /* 创建小角内部的白色三角形 */
@@ -96,4 +101,17 @@ $primary-lineHeight: 1.5;
     
 
   }
+}
+/* styles.css */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }

@@ -6,10 +6,8 @@ import TextMessage from "@/components/textMessage";
 import { setOnMessageCallback } from "@/utils/TTSRecorder";
 import { getCurrentTime } from "@/utils/time";
 import Message from "@/components/message";
-import { changeDisabled } from "@/store/chatAI";
+import { changeDisabled, changeMessageStatus } from "@/store/chatAI";
 import { useDispatch } from "react-redux";
-
-// const dispatchs = useDispatch();
 
 type Action =
   | { type: "ADD_USER_MESSAGE"; message: string }
@@ -23,14 +21,24 @@ const reducer = (state: TextItem[], action: Action): TextItem[] => {
     case "ADD_USER_MESSAGE":
       return [
         ...state,
-        { message: action.message, avator: "user", time: getCurrentTime(), key: Date.now() },
+        {
+          message: action.message,
+          avator: "user",
+          time: getCurrentTime(),
+          key: Date.now(),
+        },
       ];
     case "ADD_ROBOT_MESSAGE_START":
       return [
         ...state,
-        { message: action.message, avator: "robot", time: getCurrentTime(), key: Date.now() },
+        {
+          message: action.message,
+          avator: "robot",
+          time: getCurrentTime(),
+          key: Date.now(),
+        },
       ];
-    case "ADD_ROBOT_MESSAGE_PART":
+    case "ADD_ROBOT_MESSAGE_PART": {
       const lastMessageIndex = state.length - 1;
       if (lastMessageIndex >= 0 && state[lastMessageIndex].avator === "robot") {
         const updatedLastMessage = {
@@ -40,19 +48,25 @@ const reducer = (state: TextItem[], action: Action): TextItem[] => {
         return [...state.slice(0, lastMessageIndex), updatedLastMessage];
       }
       return state;
+    }
     default:
       return state;
   }
 };
 
 const Chat: React.FC<Props> = (props) => {
+  const dispatchs = useDispatch();
   const { text } = props;
-  console.log(text, "聊天");
+  // console.log(text, "聊天");
   const [texts, dispatch] = useReducer(reducer, initialState);
-  const [messageStatus, setMessageStatus] = useState<{ message: string; status: string; messages: string }>({
+  const [messageStatus, setMessageStatus] = useState<{
+    message: string;
+    status: string;
+    messages: string;
+  }>({
     message: "",
     status: "",
-    messages: ""
+    messages: "",
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -63,14 +77,27 @@ const Chat: React.FC<Props> = (props) => {
   }, [text]);
 
   setOnMessageCallback(({ message, avator, status }) => {
-    if (typeof status === 'number' && status === 1) {
-      dispatchs(changeDisabled(true));
+    dispatchs(changeDisabled(true)); //消息没通信完成不能允许发送
+    if (typeof status === "number" && status == 2) {
+      dispatchs(changeMessageStatus(true));
     }
-    if (status !== undefined && typeof status === 'number' && status >= 400 && status <= 500) {
-      setMessageStatus({ message: message + status, status: 'error', messages: message });
+    if (
+      status !== undefined &&
+      typeof status === "number" &&
+      status >= 400 &&
+      status <= 500
+    ) {
+      setMessageStatus({
+        message: message + status,
+        status: "error",
+        messages: message,
+      });
     }
     setTimeout(() => {
-      if (status !== undefined && (typeof status === 'number' ? status === 0 : status === '0')) {
+      if (
+        status !== undefined &&
+        (typeof status === "number" ? status === 0 : status === "0")
+      ) {
         dispatch({ type: "ADD_ROBOT_MESSAGE_START", message: message });
       } else {
         dispatch({ type: "ADD_ROBOT_MESSAGE_PART", message: message });

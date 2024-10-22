@@ -3,6 +3,6 @@ import chatAI from "./chatAI";
 
 export default configureStore({
   reducer: {
-    chatAI
+    chatAI,
   },
 });

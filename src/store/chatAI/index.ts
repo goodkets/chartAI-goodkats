@@ -3,17 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const chatAI = createSlice({
   name: "chatAI",
   initialState: {
-    chartList: [],
     disabled: true,
+    messageStatus: false, //通信是否完成
   },
   reducers: {
-    addMessage(state, action) {
-      state.chartList.push(action.payload);
-    },
     changeDisabled(state, action) {
       state.disabled = action.payload;
     },
+    changeMessageStatus(state, action) {
+      state.messageStatus = action.payload;
+    },
   },
 });
-export const { addMessage, changeDisabled } = chatAI.actions;
+export const { changeDisabled, changeMessageStatus } = chatAI.actions;
 export default chatAI.reducer;

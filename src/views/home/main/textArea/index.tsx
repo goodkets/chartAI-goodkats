@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Button, Tooltip } from "antd";
 import {
   EditOutlined,
@@ -7,35 +7,48 @@ import {
   UpCircleFilled,
 } from "@ant-design/icons";
 import WithSkeleton from "@/components/skeleton";
-import { Props } from "./type";
-import { sendMessage, createSocket } from "@/utils/TTSRecorder";
+import { Props, State } from "./type";
+import { sendMessage, setOnCloseCallback } from "@/utils/TTSRecorder";
 import "./module.scss";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { changeDisabled } from "@/store/chatAI";
 
 const { TextArea } = Input;
 
 const TextAreaText: React.FC<Props> = (props) => {
-  const dispatchs = useDispatch();
-  const [disabled, setDisabled] = useSelector((state: any) => state.chatAI.disabled);
+  const dispatch = useDispatch();
+  const disabled = useSelector((state: State) => state.chatAI.disabled);
+  const messageStatus = useSelector(
+    (state: State) => state.chatAI.messageStatus
+  );
   const [textHeight, setTextHeight] = useState("20px");
   const [textValue, setTextValue] = useState("");
+  useEffect(() => {
+    if (messageStatus && textValue.length > 0) {
+      dispatch(changeDisabled(false));
+    }
+  }, [messageStatus]);
 
-  const onChange = (e: React.ChangeEvent<any>) => {
-    // setDisabled(!(e.target.value.length > 0));
-    dispatchs(changeDisabled(!(e.target.value.length > 0)));
-    console.log(disabled, 7777)
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    dispatch(changeDisabled(!(e.target.value.length > 0)));
     setTextHeight(e.target.value.length > 0 ? "auto" : "20px");
     setTextValue(e.target.value);
   };
-  const debouncedLog = useCallback(async (value: string) => {
+  const debouncedLog = async (value: string) => {
     setTimeout(async () => {
       sendMessage(value);
     }, 1000);
     props.onAreaTextChange(value);
-    setDisabled(true);
     setTextValue("");
-  }, [props.onAreaTextChange]);
+    dispatch(changeDisabled(true));
+  };
+  setOnCloseCallback((message) => {
+    if (message) {
+      dispatch(changeDisabled(true));
+    }
+  });
 
   return (
     <div className="textArea">

@@ -12,46 +12,49 @@ $primary-lineHeight: 1.5;
     justify-content: end;
     line-height: $primary-lineHeight;
     margin-top: 25px;
-    .time {
-      margin-right: 16px;
-      text-align: right;
-      color:#ccc
+    .text { 
+      max-width: 90%;
+      .time {
+        margin-right: 16px;
+        text-align: right;
+        color:#ccc
+      }    
+      .message-box {
+        float: right;
+        margin-right: 10px;
+        .content {
+          min-width: 200px;
+          // max-width: 600px;
+          position: relative;
+          right: 0;
+          padding: 16px;
+          background-color: #e9ecef;
+          border-radius: 8px;
+          // word-spacing: -0.25em; /* 调整单词之间的间距 */
+          // letter-spacing: -0.25em; /* 调整字母之间的间距 */
+          // max-width: 50%;
+          // width: 50%;
+        //  margin-right: 10px;
+  
+        }
+        /* 创建小角内部的白色三角形 */
+        ::before {
+          content: "";
+          position: absolute;
+          top: 8px;
+          right: -8px;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0px 0 8px 8px;
+          border-color: transparent transparent transparent #e9ecef;
+        }
+      }
     }
     .userInfo {
       margin-right: 20px;
     }
-    .message-box {
-      // width: max-content;
-      float: right;
-      margin-right: 10px;
-      .content {
-        min-width: 200px;
-        max-width: 600px;
-        position: relative;
-        right: 0;
-        padding: 16px;
-        background-color: #e9ecef;
-        border-radius: 8px;
-        // word-spacing: -0.25em; /* 调整单词之间的间距 */
-        // letter-spacing: -0.25em; /* 调整字母之间的间距 */
-        // max-width: 50%;
-        // width: 50%;
-      //  margin-right: 10px;
 
-      }
-      /* 创建小角内部的白色三角形 */
-      ::before {
-        content: "";
-        position: absolute;
-        top: 8px;
-        right: -8px;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0px 0 8px 8px;
-        border-color: transparent transparent transparent #e9ecef;
-      }
-    }
   }
 
   .robot {
@@ -63,38 +66,42 @@ $primary-lineHeight: 1.5;
     margin-top: 25px;
     .text { 
       display: flex;
-      .time {
-        margin-left: 16px;
-        color:#ccc
-      }
-      .message-box {
-        // width: max-content;
-        .content {
-          min-width: 200px;
-          max-width: 600px;
-          position: relative;
-          padding: 16px;
-          background-color: #e9ecef;
-          border-radius: 8px;
-          margin-left: 15px;
-          max-width: 450px;
-          // word-spacing: -0.25em; /* 调整单词之间的间距 */
-          // letter-spacing: -0.25em; /* 调整字母之间的间距 */
-          
-  
+      .message {
+        width: 90%;
+        .time {
+          margin-left: 16px;
+          color:#ccc
         }
-        /* 创建小角内部的白色三角形 */
-        ::before {
-          content: "";
-          position: absolute;
-          top: 8px;
-          left: -8px;
-          width: 0;
-          height: 0;
-          border-style: solid;
-          border-width: 0 0 8px 8px;
-          transform: rotate(90deg);
-          border-color: transparent transparent transparent #e9ecef;
+        .message-box {
+          // max-height: 600px;
+          overflow: auto;
+          .content {
+            min-width: 600px;
+            // max-width: 600p;
+            position: relative;
+            padding: 16px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            margin-left: 15px;
+            // max-width: 450px;
+            // word-spacing: -0.25em; /* 调整单词之间的间距 */
+            // letter-spacing: -0.25em; /* 调整字母之间的间距 */
+            
+    
+          }
+          /* 创建小角内部的白色三角形 */
+          ::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 8px 8px;
+            transform: rotate(90deg);
+            border-color: transparent transparent transparent #e9ecef;
+          }
         }
       }
     }
@@ -114,4 +121,49 @@ $primary-lineHeight: 1.5;
 
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
+  
+}
+
+
+/* styles.css */
+.custom-code-block {
+  overflow: auto;
+  max-height: 300px; /* 可以根据需要调整最大高度 */
+  max-width: 100%; /* 确保代码块不会超出容器宽度 */
+}
+
+/* 横向滚动条 */
+.custom-code-block::-webkit-scrollbar {
+  height: 8px; /* 横向滚动条的高度 */
+}
+
+.custom-code-block::-webkit-scrollbar-track {
+  background: #f1f1f1; /* 滚动条轨道背景色 */
+}
+
+.custom-code-block::-webkit-scrollbar-thumb {
+  background: #888; /* 滚动条拇指背景色 */
+  border-radius: 4px; /* 滚动条拇指圆角 */
+}
+
+.custom-code-block::-webkit-scrollbar-thumb:hover {
+  background: #555; /* 滚动条拇指悬停背景色 */
+}
+
+/* 纵向滚动条 */
+.custom-code-block::-webkit-scrollbar {
+  width: 8px; /* 纵向滚动条的宽度 */
+}
+
+.custom-code-block::-webkit-scrollbar-track {
+  background: #f1f1f1; /* 滚动条轨道背景色 */
+}
+
+.custom-code-block::-webkit-scrollbar-thumb {
+  background: #888; /* 滚动条拇指背景色 */
+  border-radius: 4px; /* 滚动条拇指圆角 */
+}
+
+.custom-code-block::-webkit-scrollbar-thumb:hover {
+  background: #555; /* 滚动条拇指悬停背景色 */
 }

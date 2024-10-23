@@ -8,27 +8,21 @@
   display: flex;
   justify-content: end;
   line-height: 1.5;
+  margin-top: 25px;
 }
 
-.containerChat .user .time {
+.containerChat .user .text .time {
   margin-right: 16px;
   text-align: right;
   color: #ccc;
 }
 
-.containerChat .user .userInfo {
-  margin-right: 20px;
-}
-
-.containerChat .user .message-box {
+.containerChat .user .text .message-box {
   float: right;
-  margin-right: 10px;
   /* 创建小角内部的白色三角形 */
 }
 
-.containerChat .user .message-box .content {
-  min-width: 200px;
-  max-width: 600px;
+.containerChat .user .text .message-box .content {
   position: relative;
   right: 0;
   padding: 16px;
@@ -36,7 +30,7 @@
   border-radius: 8px;
 }
 
-.containerChat .user .message-box ::before {
+.containerChat .user .text .message-box ::before {
   content: "";
   position: absolute;
   top: 8px;
@@ -46,6 +40,10 @@
   border-style: solid;
   border-width: 0px 0 8px 8px;
   border-color: transparent transparent transparent #e9ecef;
+}
+
+.containerChat .user .userInfo {
+  margin-right: 20px;
 }
 
 .containerChat .robot {
@@ -58,27 +56,29 @@
   display: flex;
 }
 
-.containerChat .robot .text .time {
+.containerChat .robot .text .message {
+  max-width: 90%;
+}
+
+.containerChat .robot .text .message .time {
   margin-left: 16px;
   color: #ccc;
 }
 
-.containerChat .robot .text .message-box {
+.containerChat .robot .text .message .message-box {
+  overflow: auto;
   /* 创建小角内部的白色三角形 */
 }
 
-.containerChat .robot .text .message-box .content {
-  min-width: 200px;
-  max-width: 600px;
+.containerChat .robot .text .message .message-box .content {
   position: relative;
   padding: 16px;
   background-color: #e9ecef;
   border-radius: 8px;
   margin-left: 15px;
-  max-width: 450px;
 }
 
-.containerChat .robot .text .message-box ::before {
+.containerChat .robot .text .message .message-box ::before {
   content: "";
   position: absolute;
   top: 8px;
@@ -89,4 +89,69 @@
   border-width: 0 0 8px 8px;
   transform: rotate(90deg);
   border-color: transparent transparent transparent #e9ecef;
+}
+
+/* styles.css */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.lang-type {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* 横向滚动条 */
+.custom-code-block::-webkit-scrollbar {
+  height: 8px;
+  /* 横向滚动条的高度 */
+}
+
+.custom-code-block::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* 滚动条轨道背景色 */
+}
+
+.custom-code-block::-webkit-scrollbar-thumb {
+  background: #888;
+  /* 滚动条拇指背景色 */
+  border-radius: 4px;
+  /* 滚动条拇指圆角 */
+}
+
+.custom-code-block::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* 滚动条拇指悬停背景色 */
+}
+
+/* 纵向滚动条 */
+.custom-code-block::-webkit-scrollbar {
+  width: 8px;
+  /* 纵向滚动条的宽度 */
+}
+
+.custom-code-block::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* 滚动条轨道背景色 */
+}
+
+.custom-code-block::-webkit-scrollbar-thumb {
+  background: #888;
+  /* 滚动条拇指背景色 */
+  border-radius: 4px;
+  /* 滚动条拇指圆角 */
+}
+
+.custom-code-block::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* 滚动条拇指悬停背景色 */
 }

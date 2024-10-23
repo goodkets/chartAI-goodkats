@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Avatar } from "antd";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { extractLanguageType, trimStartEndContent } from "@/utils/langsText";
 
 interface MessageItemProps {
   avator: string;
@@ -49,29 +49,15 @@ const TextMessage: React.FC<MessageItemProps> = (props) => {
       setIsAnimated(true);
     }
   }, [avator]);
-  const customStyle = {
-    // lineHeight: '1.5',
-    // fontSize: '1rem',
-    // borderRadius: '5px',
-    // backgroundColor: '#282C34',
-    // padding: '20px',
-    // overFlow: 'auto'
-    lineHeight: '1.5',
-    fontSize: '1rem',
-    borderRadius: '5px',
-    backgroundColor: '#f7f7f7',
-    padding: '20px'
-  };
 
-
+  console.log(codeBlocks);
+  console.log(textParts);
   const userText = (
     <div className="user">
-      <div className="text">
+      <div className="text ">
         <div className="time">{time}</div>
-        <div className="message-box">
-          <div className="content">
-            {avator === "user" ? message : ""}
-          </div>
+        <div className="message-box ">
+          <div className="content">{avator === "user" ? message : ""}</div>
         </div>
       </div>
       <div className="userInfo">
@@ -89,24 +75,29 @@ const TextMessage: React.FC<MessageItemProps> = (props) => {
         <div className="message">
           <div className="time">{time}</div>
           <div className="message-box">
-            <div className={`content ${isAnimated ? 'fade-in' : ''}`}>
-              {/* <SyntaxHighlighter language="javascript" style={solarizedlight}>
-                {codeString}
-                {avator === "robot" ? message : ""}
-              </SyntaxHighlighter> */}
-              {avator === "robot" ? (
-                <>
-                  {textParts.map((part, index) => (
-                    <React.Fragment key={`text-${index}`}>
-                      <div>{part}</div>
-                      {index < codeBlocks.length && (
-                        <SyntaxHighlighter language="javascript" customStyle={customStyle} className="custom-code-block">
-                          {codeBlocks[index].slice(3, -3)}
-                        </SyntaxHighlighter>
-                      )}
-                    </React.Fragment>
+            <div className={`content ${isAnimated ? "fade-in" : ""}`}>
+              {codeBlocks.length > 0 ? (
+                <div>
+                  {codeBlocks.map((codeBlock, index) => (
+                    <Fragment key={index}>
+                      <div className="code-block-title">{textParts[index]}</div>
+                      <div className="langs">
+                        <div className="lang-type">
+                          语言类型： {extractLanguageType(codeBlock)}
+                        </div>
+                      </div>
+                      <SyntaxHighlighter
+                        language="javascript"
+                        wrapLongLines={true}
+                        showLineNumbers={true}
+                        startingLineNumber={1}
+                        className="custom-code-block"
+                      >
+                        {trimStartEndContent(codeBlock)}
+                      </SyntaxHighlighter>
+                    </Fragment>
                   ))}
-                </>
+                </div>
               ) : (
                 <div>{message}</div>
               )}

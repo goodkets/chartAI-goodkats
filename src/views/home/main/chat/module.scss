@@ -3,17 +3,14 @@ $primary-size: 16px;
 $primary-lineHeight: 1.5;
 
 .containerChat {
-  // width: 100%;
   color: $primary-color;
   font-size: $primary-size;
-  // margin-bottom: 1000px;
   .user {
     display: flex;
     justify-content: end;
     line-height: $primary-lineHeight;
     margin-top: 25px;
     .text { 
-      max-width: 90%;
       .time {
         margin-right: 16px;
         text-align: right;
@@ -21,20 +18,12 @@ $primary-lineHeight: 1.5;
       }    
       .message-box {
         float: right;
-        margin-right: 10px;
         .content {
-          min-width: 200px;
-          // max-width: 600px;
           position: relative;
           right: 0;
           padding: 16px;
           background-color: #e9ecef;
           border-radius: 8px;
-          // word-spacing: -0.25em; /* 调整单词之间的间距 */
-          // letter-spacing: -0.25em; /* 调整字母之间的间距 */
-          // max-width: 50%;
-          // width: 50%;
-        //  margin-right: 10px;
   
         }
         /* 创建小角内部的白色三角形 */
@@ -59,15 +48,12 @@ $primary-lineHeight: 1.5;
 
   .robot {
     line-height: $primary-lineHeight;
-    // display: flex;
-    // justify-content: start;
     line-height: $primary-lineHeight;
-    // max-width: 90%;
     margin-top: 25px;
     .text { 
       display: flex;
       .message {
-        width: 90%;
+        max-width: 90%;
         .time {
           margin-left: 16px;
           color:#ccc
@@ -76,18 +62,11 @@ $primary-lineHeight: 1.5;
           // max-height: 600px;
           overflow: auto;
           .content {
-            min-width: 600px;
-            // max-width: 600p;
             position: relative;
             padding: 16px;
             background-color: #e9ecef;
             border-radius: 8px;
             margin-left: 15px;
-            // max-width: 450px;
-            // word-spacing: -0.25em; /* 调整单词之间的间距 */
-            // letter-spacing: -0.25em; /* 调整字母之间的间距 */
-            
-    
           }
           /* 创建小角内部的白色三角形 */
           ::before {
@@ -123,13 +102,9 @@ $primary-lineHeight: 1.5;
   animation: fadeIn 0.5s ease-in-out;
   
 }
-
-
-/* styles.css */
-.custom-code-block {
-  overflow: auto;
-  max-height: 300px; /* 可以根据需要调整最大高度 */
-  max-width: 100%; /* 确保代码块不会超出容器宽度 */
+.lang-type {
+  font-size: 20px;
+  font-weight: 700;
 }
 
 /* 横向滚动条 */

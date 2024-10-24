@@ -49,9 +49,6 @@ const TextMessage: React.FC<MessageItemProps> = (props) => {
       setIsAnimated(true);
     }
   }, [avator]);
-
-  console.log(codeBlocks);
-  console.log(textParts);
   const userText = (
     <div className="user">
       <div className="text ">

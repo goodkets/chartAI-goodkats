@@ -3,7 +3,7 @@ import {
     PlusOutlined,
     VideoCameraOutlined,
   } from '@ant-design/icons';
- import { Menu } from 'antd';
+import { Menu, Tooltip } from 'antd';
 import WithSkeleton from "@/components/skeleton"
 const MenuAside = () => {
     return (
@@ -13,24 +13,13 @@ const MenuAside = () => {
         //   theme='dark'
           mode="inline"
           defaultSelectedKeys={['1']}
-          items={[
-            {
-              key: '1',
-              icon: <PlusOutlined />,
-              label: '新对话',
-            },
-            // {
-            //   key: '2',
-            //   icon: <VideoCameraOutlined />,
-            //   label: 'nav 2',
-            // },
-            // {
-            //   key: '3',
-            //   icon: <UploadOutlined />,
-            //   label: 'nav 3',
-            // },
-          ]}
-        />
+        >
+          <Menu.Item key='1' icon={<PlusOutlined />}>
+            <Tooltip title="由于服务器限制，暂不支持新对话">
+              新对话
+            </Tooltip>
+          </Menu.Item>
+        </Menu>
         </>
     )
 }

@@ -4,7 +4,6 @@ import Aside from "./aside";
 import Header from "./header";
 import Main from "./main";
 
-const { Footer, Sider, Content } = Layout;
 const Home: React.FC = () => {
   const [Collapsed, homeSetCollapsed] = useState(false);
   const onCollapse = (collapsed: boolean) => {
